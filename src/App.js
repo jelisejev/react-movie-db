@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Header from './Header';
+import AppBar from 'material-ui/AppBar';
 import MovieList from './MovieList';
 import './App.css';
 
@@ -9,7 +9,7 @@ class App extends Component {
     return (
       <MuiThemeProvider>
         <div>
-          <Header />
+          <AppBar title="React Movie Data Base" />
           <MovieList/>
         </div>
       </MuiThemeProvider>
