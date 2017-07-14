@@ -5,13 +5,11 @@ import MovieList from './MovieList';
 import TextField from 'material-ui/TextField';
 import './App.css';
 
-import allMovies from './movies.json';
-
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      movies: allMovies
+      movies: []
     };
   }
 
@@ -29,11 +27,19 @@ class App extends Component {
     );
   }
 
-  onSearch = (event, query) => {
-    const movies = allMovies.filter(movie => movie.Title.toLowerCase().indexOf(query.toLowerCase()) !== -1);
+  onSearch = async (event, query) => {
+    const movies = await this.fetchMovies(query);
+
     this.setState({
       movies
     });
+  }
+
+  fetchMovies = async (query) => {
+    const rs = await fetch(`http://www.omdbapi.com/?s=${query}&apikey=f8922089`);
+    const json = await rs.json();
+
+    return json.Search || [];
   }
 }
 
