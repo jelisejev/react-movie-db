@@ -36,7 +36,7 @@ class App extends Component {
   }
 
   fetchMovies = async (query) => {
-    const rs = await fetch(`http://www.omdbapi.com/?s=${query}&apikey=f8922089`);
+    const rs = await fetch(`http://www.omdbapi.com/?s=${query}&apikey=${process.env.REACT_APP_API_KEY}`);
     const json = await rs.json();
 
     return json.Search || [];
